@@ -1,0 +1,49 @@
+
+<% if user_signed_in? %>
+<div class="w-full px-20 pt-5">
+
+
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="font-bold text-4xl">Friend List</h1>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="">
+          <tr class="bg-gray-800">
+            <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+            <%# <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Last Name</th> %>
+            <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
+            <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Phone</th>
+            <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Twitter</th>
+            <%# <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">User Id</th> %>
+            <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Actions</th>
+            
+          </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% if @friends.any? %>
+          <% @friends.each do |friend| %>
+            <%= render friend %>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="6" class="text-center py-4 text-gray-500">No friends found.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="mt-5">
+    <%= link_to "New friend", new_friend_path, class: "rounded-md px-2 py-1.5 text-sm bg-gray-800 hover:bg-gray-700 text-white font-medium inline-block" %>
+  </div>
+
+
+</div>
+<% else %>
+  <div class="px-20">
+    <h1 class="font-bold text-4xl">Hello World</h1>
+    This is my first rails webpage....
+  </div>
+<% end %>

@@ -1,0 +1,85 @@
+<div class="w-full flex flex-col justify-center ">
+  <%= form_with(model: friend, class: "w-full") do |form| %>
+
+    <% if friend.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-600 px-4 py-3 font-medium rounded-md mb-6">
+        <h2 class="font-semibold mb-2">
+          <%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:
+        </h2>
+        <ul class="list-disc ml-6">
+          <% friend.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="w-full border border-gray-200 mt-3 lg:w-2/4 bg-white rounded-lg p-10 mx-auto">
+      <div class="space-y-5">
+        <div>
+          <%= form.text_field :first_name,
+                placeholder: "Enter first name",
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full",
+                  friend.errors[:first_name].any? ? "" : "border-gray-300 "
+                ] %>
+        </div>
+
+        <div>
+          <%= form.text_field :last_name,
+                placeholder: "Enter last name",
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full",
+                  friend.errors[:last_name].any? ? "" : "border-gray-300 "
+                ] %>
+        </div>
+
+        <div>
+          <%= form.text_field :email,
+                placeholder: "Enter email",
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full",
+                  friend.errors[:email].any? ? "" : "border-gray-300 "
+                ] %>
+        </div>
+
+        <div>
+          <%= form.text_field :phone,
+                placeholder: "Enter phone number",
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full",
+                  friend.errors[:phone].any? ? "" : "border-gray-300"
+                ] %>
+        </div>
+
+        <div>
+          <%= form.text_field :twitter,
+                placeholder: "Enter Twitter handle",
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full",
+                  friend.errors[:twitter].any? ? "" : "border-gray-300 "
+                ] %>
+        </div>
+
+        <div>
+          <%= form.number_field :user_id,
+                id: :friend_user_id, type: :hidden,
+                value: current_user.id,
+                class: [
+                  "block shadow-sm rounded-md border px-4 py-2 w-full ",
+                  friend.errors[:twitter].any? ? "" : "border-gray-300 "
+                ] %>
+        </div>
+
+
+        <div>
+          <%= form.submit "Save",
+                class: "w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-md shadow cursor-pointer" %>
+        </div>
+      </div>
+
+     
+    </div>
+
+  <% end %>
+</div>
